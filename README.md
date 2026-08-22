@@ -79,34 +79,22 @@ Organização
             └── Descartes
 ```
 
-A arquitetura também considera diferentes níveis de acesso e responsabilidades dentro das organizações.
-
 ---
 
-# Arquitetura
+# Planejamento
 
-A aplicação foi organizada em camadas com responsabilidades distintas:
+O desenvolvimento foi conduzido de forma incremental, passando por etapas de:
 
-```mermaid
-graph TD
-    Web["Web<br/>Routes · Schemas · Templates"]
-    Services["Services<br/>Orquestração · Regras de aplicação"]
-    Domain["Domain<br/>Entidades · Erros · Enums"]
-    DB["Database<br/>Tables · Mappers · Connection · Engine"]
-    Security["Security<br/>Authentication · Authorization · RequestContext"]
+1. identificação do problema e definição do escopo;
+2. levantamento dos requisitos;
+3. modelagem do domínio;
+4. definição da arquitetura;
+5. modelagem da persistência;
+6. implementação incremental;
+7. criação e expansão da suíte de testes;
+8. revisão das decisões conforme novos problemas foram identificados.
 
-    Web --> Services
-    Services --> Domain
-    Services --> DB
-    DB --> Domain
-
-    Security -.-> Web
-    Security -.-> Services
-```
-
-A principal preocupação dessa organização é manter cada camada responsável por um conjunto específico de problemas e evitar que detalhes de implementação de camadas inferiores sejam propagados para as camadas superiores.
-
-Essa separação também permite evoluir determinadas partes do sistema sem tornar todas as outras dependentes dos detalhes de implementação.
+O planejamento não foi tratado como uma especificação imutável. Decisões arquiteturais foram revistas conforme o domínio e a implementação evoluíram.
 
 ---
 
@@ -132,6 +120,35 @@ O levantamento inicial foi organizado a partir dos principais fluxos do domínio
 - testabilidade das regras de negócio;
 - controle explícito da persistência;
 - possibilidade de evolução da arquitetura.
+
+---
+
+A arquitetura também considera diferentes níveis de acesso e responsabilidades dentro das organizações.
+
+# Arquitetura
+
+A aplicação foi organizada em camadas com responsabilidades distintas:
+
+```mermaid
+graph TD
+    Web["Web<br/>Routes · Schemas · Templates"]
+    Services["Services<br/>Orquestração · Regras de aplicação"]
+    Domain["Domain<br/>Entidades · Erros · Enums"]
+    DB["Database<br/>Tables · Mappers · Connection · Engine"]
+    Security["Security<br/>Authentication · Authorization · RequestContext"]
+
+    Web --> Services
+    Services --> Domain
+    Services --> DB
+    DB --> Domain
+
+    Security -.-> Web
+    Security -.-> Services
+```
+
+A principal preocupação dessa organização é manter cada camada responsável por um conjunto específico de problemas e evitar que detalhes de implementação de camadas inferiores sejam propagados para as camadas superiores.
+
+Essa separação também permite evoluir determinadas partes do sistema sem tornar todas as outras dependentes dos detalhes de implementação.
 
 ---
 
@@ -173,7 +190,7 @@ Assim, o domínio pode ser testado isoladamente, com menor custo e menor depend�
 
 A implementação atual utiliza dataclasses imutáveis para representar entidades do domínio.
 
-´´´python
+```python
 """
 Exemplo de entidade do domínio.
 """
@@ -190,7 +207,7 @@ class User:
     last_login_at: datetime | None
     created_at: datetime
     has_password: bool = True
-´´´
+```
 
 ---
 
@@ -537,13 +554,9 @@ Até a disponibilização da demo, esta seção permanece propositalmente reserv
 ---
 
 <div align="center">
-  <p>Idealizado e desenvolvido por <b>Jonatha Gabriel</b>.</p>
-  <a href="https://github.com/j0ng4b">GitHub</a> • <a href="https://linkedin.com/in/j0ng4b">LinkedIn</a>
-</div>
-
----
-
-<div align="center">
   <strong>Recma</strong><br>
-  Projeto de engenharia de software para gestão de ativos patrimoniais.
+  Projeto de engenharia de software para gestão de ativos patrimoniais.<br><br>
+
+  <a href="https://github.com/j0ng4b">GitHub</a> •
+  <a href="https://linkedin.com/in/j0ng4b">LinkedIn</a>
 </div>
