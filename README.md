@@ -96,11 +96,8 @@ graph TD
     Security["Security<br/>Authentication · Authorization · RequestContext"]
 
     Web --> Services
-    Web --> Domain
-
     Services --> Domain
     Services --> DB
-
     DB --> Domain
 
     Security -.-> Web
