@@ -110,6 +110,31 @@ Essa separação também permite evoluir determinadas partes do sistema sem torn
 
 ---
 
+# Requisitos
+
+O levantamento inicial foi organizado a partir dos principais fluxos do domínio patrimonial.
+
+### Funcionais
+
+- gerenciar organizações e usuários;
+- gerenciar ativos e categorias;
+- organizar localizações hierárquicas;
+- registrar manutenções;
+- controlar movimentações;
+- registrar descarte;
+- controlar acesso por papel e permissão.
+
+### Não funcionais
+
+- isolamento entre organizações;
+- separação entre domínio e infraestrutura;
+- consistência transacional;
+- testabilidade das regras de negócio;
+- controle explícito da persistência;
+- possibilidade de evolução da arquitetura.
+
+---
+
 # Separação entre domínio e infraestrutura
 
 Uma das decisões arquiteturais centrais do projeto foi manter o **domínio independente do ORM e das estruturas de persistência**.
